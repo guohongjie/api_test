@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="login_page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自动化测试平台</title>
+    <!-- main styles -->
+    <link rel="stylesheet" href="/static/style.css" />
+    
+     <link rel="stylesheet" href="/static/flagship.css">
+</head>
+<body>
+
+<div class="login_warp">
+    <div class="logo_box"> <img  src="/static/dqc.png" alt="shortcut icon" /></div>
+<div class="logo_box">
+		<a href="#" title="功能自动化测试报告平台"><img src="/static/Atuo.jpg" alt="功能自动化测试报告平台"></a>
+	</div>
+	<div class="login_main clearfix">
+	<div class="login_screenshot">
+			<img src="/static/login_screenshot.jpg" alt="功能自动化测试报告平台" />
+		</div>
+    <from >
+
+        <h1 style="font-family:verdana">功能自动化测试首页</h1>
+
+<h2>
+
+<button>
+    <a href="http://10.144.33.191/api" target="_blank">接口自动化测试报告!</a></button></h2>
+<h2>
+<button>
+    <a href="http://10.144.33.191/gui" target="_blank">界面自动化测试报告!</a></button></h2>
+<p>选择需要查看的测试报告，该链接会在新窗口中打开。</p>
+
+    </from>
+</div>
+</div>
+<script src="/static/jquery.min.js"></script>
+<script src="/static/jquery-migrate.min.js"></script>
+<script src="/static/jquery.validate.min.js"></script>
+<script src="/static/jquery_cookie.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        $('#login_form').validate({
+            onkeyup: false,
+            errorClass: 'error',
+            validClass: 'valid',
+            rules: {
+                userCode: { required: true },
+                password: { required: true ,minlength:5},
+                auth: { required: true }
+            },
+            messages: {
+                userCode: { required: "请输入用户名"},
+                password: { required: "请输入密码",minlength: jQuery.format("密码不能小于{0}个字 符") },
+                auth: { required: "请输入验证码" }
+            },
+            highlight: function(element) {
+                $(element).closest('div').addClass("f_error");
+               
+            },
+            unhighlight: function(element) {
+                $(element).closest('div').removeClass("f_error");
+            },
+            errorPlacement: function(error, element) {
+                $(element).closest('div').append(error);
+            }
+        });
+    });
+    var captchaSrc = "/authImage/create.do?t=";
+    function changeImageAuthenticCode(){
+        $("#authimg").attr("src",captchaSrc+Math.random());
+    }
+    
+    //添加回车处理事件
+    document.onkeyup=function(ev){
+ 		var oEvent=ev || event;
+ 		if(oEvent.keyCode==13){//判断是否是回车按钮
+  			$('#login_form').submit();
+ 		}
+	}
+</script>
+</body>
+</html>

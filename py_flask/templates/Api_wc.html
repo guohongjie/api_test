@@ -1,0 +1,2017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> 帅气的测试组</p>
+<p class='attribute'><strong>开始时间 : </strong> 2017-10-24 09:46:52</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.369000</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 15，通过 15，通过率= 100.00%</p>
+
+<p class='description'><strong>测试报告链接地址:(链接浏览时间13:00-14：00)</strong>
+<p><font color="#FF0000">10.144.33.191:80</font> </p>
+<strong>测试执行情况如下:(各功能模块用例条数)</strong><br />
+<h5>&nbsp&nbsp&nbsp店铺管理模块：</h5>
+    <p><font color="#FF0000">&nbsp  &nbsp  &nbsp  &nbsp &nbsp  1 - 13  </font> </p>
+<h5>&nbsp&nbsp&nbsp页面审核：</h5>
+<p><font color="#FF0000">&nbsp  &nbsp  &nbsp  &nbsp &nbsp  1 - 02  </font> </p>
+<h5>&nbsp&nbsp&nbsp店铺装修：</h5>
+<p><font color="#FF0000">&nbsp  &nbsp  &nbsp  &nbsp &nbsp  0 - 00  </font> </p></p>
+</div>
+
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 15 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 15 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglLogin: 接口- 店铺管理_登录 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',1)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglLogin</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in">
+    <pre>
+    
+pt1_1: &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+    &lt;meta http-equiv="pragma" content="no-cache"&gt;
+    &lt;meta http-equiv="cache-con trol" content="no-cache"&gt;
+    &lt;meta http-equiv="expires" content="0"&gt;
+    &lt;meta http-equiv="x-ua-compatible" content="IE=edge" &gt;
+    &lt;base href=""&gt;
+    &lt;link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon"&gt;
+    &lt;title&gt;旗舰店后台管理系统&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;!--  Bootstrap framework start --&gt;
+&lt;link rel="stylesheet" href="/assets/css/bootstrap.css" /&gt;
+&lt;link rel="stylesheet" href="/assets/css/font-awesome.css" /&gt;
+&lt;!-- ace styles --&gt;
+&lt;link rel="stylesheet" href="/assets/css/ace.css"/&gt;
+&lt;link rel="stylesheet" href="/assets/css/chosen.css"/&gt;
+&lt;link rel="stylesheet" href="/css/artDialog.css"/&gt;
+&lt;!-- Bootstrap framework end --&gt;
+&lt;!--assets ui--&gt;
+&lt;link rel="stylesheet" href="/assets/css/jquery-ui.css" /&gt;
+&lt;!-- text fonts --&gt;
+&lt;link rel="stylesheet" href="/assets/css/ace-fonts.css" /&gt;
+&lt;!--js--&gt;
+&lt;script src="/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/bootstrap-table/bootstrap-table.js"&gt;&lt;/script&gt;
+&lt;script src="/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/chosen.jquery.js"&gt;&lt;/script&gt;
+&lt;script src="/js/jquery.form.min.js"&gt;&lt;/script&gt;
+&lt;!--bookjs--&gt;
+&lt;script src="/assets/js/bootbox.js"&gt;&lt;/script&gt;
+&lt;!--alert--&gt;
+&lt;script src="/js/jquery.artDialog.js"&gt;&lt;/script&gt;
+&lt;script src="/js/artDialog-common.js"&gt;&lt;/script&gt;
+
+&lt;body&gt;
+
+&lt;!-- header end  --&gt;
+&lt;!-- main content start --&gt;
+    &lt;div class="bBox"&gt;
+    
+
+&lt;!--修改密码--&gt;
+&lt;div class="modal fade" id="update_password" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+    &lt;div class="modal-dialog" style="width:500px;"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+                &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+                &lt;h4 class="modal-title"&gt;修改密码&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body" &gt;
+                &lt;form class="form-horizontal" id="update_password_template"  action="#" method="post"&gt;
+                    &lt;input type="hidden" name="id" id="p_id" value=""&gt;
+                    &lt;div class="row"&gt;
+                        &lt;div class="col-xs-12 col-sm-12"&gt;
+                            &lt;div class="form-group col-lg-12"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;商家账号&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="pLoginName" readonly class="form-control"&gt;
+                                    &lt;input type="hidden" id="loginName" name="loginName"/&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="col-xs-12 col-sm-12"&gt;
+                            &lt;div class="form-group col-lg-12"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;密码&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="password" id="pLoginPwd" name="loginPwd" class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="col-xs-12 col-sm-12"&gt;
+                            &lt;div class="form-group col-lg-12"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;确认密码&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="password" id="pLoginPwdCon" name="loginPwdCon"
+                                           class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button class="btn btn-default"  onclick="updatePwd()"  id="saveID"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                    确定
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    取消
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /.modal-content --&gt;
+    &lt;/div&gt;
+    &lt;!-- /.modal-dialog --&gt;P
+&lt;/div&gt;
+&lt;!-- /.modal --&gt;&lt;script type="text/javascript"&gt;
+	var ctx = '';
+&lt;/script&gt;
+&lt;link rel="stylesheet" href="/css/smoke.css"/&gt;
+&lt;script src="/js/smoke.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/ace.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/ace-elements.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/bootstrapValidator.min.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/bootstrap-tag.js"&gt;&lt;/script&gt;
+&lt;script src="/js/WdatePicker/WdatePicker.js"&gt;&lt;/script&gt;
+&lt;script src="/js/bfs/list.js"&gt;&lt;/script&gt;
+&lt;script src="/js/bfs/bfs.js"&gt;&lt;/script&gt;
+&lt;style&gt;
+    th {
+    	text-align:center;
+    }
+    td {
+    	overflow:hidden;  
+        text-overflow:ellipsis;  
+        white-space:nowrap;  
+    }
+    textarea {
+    	resize:none;
+    }
+	.ace-icon-new {
+		text-align: center;
+        cursor: pointer;
+	}
+	.input-icon.input-icon-right &gt; .ace-icon-new {
+		left: auto;
+		right: 3px;
+	}
+	.input-icon &gt; .ace-icon-new {
+		bottom: 1px;
+		color: #909090;
+		display: inline-block;
+		font-size: 16px;
+		left: 3px;
+		line-height: 30px;
+		padding: 0 3px;
+		position: absolute;
+		z-index: 2;
+	}
+	.col-sm-3 {
+	    width:8%;
+	}
+	.selectedBrand {
+		float:left;
+		margin-bottom:10px;
+		margin-right:10px;
+		border:1px solid #000;
+		padding:0 5px;
+	}
+&lt;/style&gt;
+
+&lt;div class="page-content"&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-xs-12"&gt;
+			&lt;!-- PAGE CONTENT BEGINS --&gt;
+			&lt;div class="row"&gt;
+				&lt;div class="col-lg-12"&gt;
+					&lt;form id="search_form" name="search_form" method="post"
+						action="/bfsShop/list.do"
+						style="padding: 0px; margin: 0px;" class="form-inline"&gt;
+						&lt;div class="panel panel-default" style="margin-top: -px"&gt;
+							&lt;div id="panel-body-search" class="panel-body clearfix"&gt;
+								&lt;!-- 如果想只显示一行搜索条件请使用下面代码 --&gt;
+								&lt;!-- &lt;div id="panel-body-search" class="panel-body panel-body-search-close"&gt; --&gt;
+
+                                &lt;!--表单开始--&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店账号&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input type="text" value="" name="loginName" class="form-control" style="width:230px;"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店名称&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input type="text" value="" name="storeName" class="form-control" style="width:370px;"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;开通时间&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input id="startDate" name="startDate" value="" class="form-control" style="width:100px;" type="text" onfocus="WdatePicker({onpicked:function(){endDate.focus();},dateFmt:'yyyy-MM-dd',skin:'twoer',isShowClear:false,maxDate:'#F{$dp.$D(\'endDate\')}'})"/&gt;
+                                        &amp;nbsp;—&amp;nbsp;
+										&lt;input id="endDate" name="endDate" value="" class="form-control" style="width:100px;" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'twoer',isShowClear:false,minDate:'#F{$dp.$D(\'startDate\')}'})"/&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4" style="width:900px;"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right" style="width:195px;"&gt;经营分类&lt;/label&gt;
+                                    &lt;div class="col-lg-8" style="width:600px;"&gt;
+                                        &lt;select id="firstClass" name="firstClass" class="form-control"&gt;
+                                        	&lt;option value=""&gt;全部一级分类&lt;/option&gt;
+                                        &lt;/select&gt;
+                                        &lt;select id="secondClass" name="secondClass" class="form-control"&gt;
+                                        	&lt;option value=""&gt;全部二级分类&lt;/option&gt;
+                                        &lt;/select&gt;
+                                        &lt;select id="thirdClass" name="thirdClass" class="form-control"&gt;
+                                        	&lt;option value=""&gt;全部三级分类&lt;/option&gt;
+                                        &lt;/select&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;状态&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;select id="state" name="state" class="form-control" style="width:230px;"&gt;
+                                        	&lt;option value=""&gt;全部状态&lt;/option&gt;
+                                        	&lt;option value="0"&gt;冻结&lt;/option&gt;
+                                        	&lt;option value="1"&gt;使用中&lt;/option&gt;
+                                        	&lt;option value="2"&gt;过期&lt;/option&gt;
+                                        &lt;/select&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4" style="width:900px;"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right" style="width:195px;"&gt;主营品牌&lt;/label&gt;
+                                    &lt;div class="col-lg-8" style="width:190px;"&gt;
+                                        &lt;input type="text" value="" name="brandName" class="form-control" style="width:190px;"&gt;
+                                    &lt;/div&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                    &lt;label for="inputEmail3" class="control-label text-right"&gt;联系人&lt;/label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                    &lt;input type="text" value="" name="contacts" class="form-control" style="width:150px;"&gt;
+                                &lt;/div&gt;
+								&lt;!--表单开始--&gt;
+							&lt;/div&gt;
+							&lt;div class="panel-footer text-right clearfix"&gt;
+								&lt;input class="btn btn-default" id="clear_query_btn"
+									type="submit" style="margin-right: 30px" value="查 询"/&gt;
+								&lt;button class="btn btn-default"
+									type="button" onclick="clearForm();" style="margin-right: 50px"&gt;清 空&lt;/button&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/form&gt;
+				&lt;/div&gt;
+				&lt;!-- /.col-lg-12 --&gt;
+			&lt;/div&gt;
+
+			&lt;div class="row"&gt;
+				&lt;div class="col-xs-12"&gt;
+					&lt;div class="table-header"&gt;
+						旗舰店列表
+						&lt;div style="float:right;line-height:35px;padding-right:20px;"&gt;
+							&lt;button class="btn btn-default" type="button" onclick="showAddTempInfo();"&gt;+新增旗舰店&lt;/button&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div&gt;
+						&lt;table class="table table-striped table-bordered table-hover" style="table-layout:fixed;"&gt;
+							&lt;thead&gt;
+	                            &lt;tr&gt;
+	                                &lt;th width="5%"&gt;旗舰店编号&lt;/th&gt;
+	                                &lt;th width="10%"&gt;旗舰店名称&lt;/th&gt;
+	                                &lt;th width="8%"&gt;旗舰店账号&lt;/th&gt;
+	                                &lt;th width="9%"&gt;主营品牌&lt;/th&gt;
+	                                &lt;th width="6%"&gt;开通时间&lt;/th&gt;
+	                                &lt;th width="7%"&gt;联系人&lt;/th&gt;
+	                                &lt;th width="8%"&gt;联系电话&lt;/th&gt;
+	                                &lt;th width="10%"&gt;邮箱&lt;/th&gt;
+	                                &lt;th width="4%"&gt;状态&lt;/th&gt;
+	                                &lt;th width="40%"&gt;操作&lt;/th&gt;
+	                            &lt;/tr&gt;
+							&lt;/thead&gt;
+
+							&lt;tbody&gt;
+								 										&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_364&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj1&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj1&lt;/td&gt;
+		                                    &lt;td class="center"&gt;小米（MI）&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;q&lt;/td&gt;
+		                                    &lt;td class="center"&gt;18519118958&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861472@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_364','1');"&gt;
+		                                            &lt;i id="lock_SI_364" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_364');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_364','ghj1');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_364','1');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		关闭PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_364','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_629&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_629','1');"&gt;
+		                                            &lt;i id="lock_SI_629" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_629');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_629','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_629','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_629','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_628&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_628','1');"&gt;
+		                                            &lt;i id="lock_SI_628" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_628');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_628','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_628','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_628','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_627&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_627','1');"&gt;
+		                                            &lt;i id="lock_SI_627" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_627');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_627','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_627','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_627','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_626&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_626','1');"&gt;
+		                                            &lt;i id="lock_SI_626" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_626');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_626','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_626','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_626','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_625&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_625','1');"&gt;
+		                                            &lt;i id="lock_SI_625" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_625');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_625','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_625','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_625','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_624&lt;/td&gt;
+		                                    &lt;td class="center"&gt;cs001&lt;/td&gt;
+		                                    &lt;td class="center"&gt;cs001&lt;/td&gt;
+		                                    &lt;td class="center"&gt;麦博（microlab）&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-23&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;18519445454&lt;/td&gt;
+		                                    &lt;td class="center"&gt;4815@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_624','1');"&gt;
+		                                            &lt;i id="lock_SI_624" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_624');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_624','cs001');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_624','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_624','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_623&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_623','1');"&gt;
+		                                            &lt;i id="lock_SI_623" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_623');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_623','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_623','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_623','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_621&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_621','1');"&gt;
+		                                            &lt;i id="lock_SI_621" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_621');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_621','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_621','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_621','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																			&lt;tr&gt;
+		                                    &lt;td class="center"&gt;SI_620&lt;/td&gt;
+		                                    &lt;td class="center"&gt;测试组_接口自动化&lt;/td&gt;
+		                                    &lt;td class="center"&gt;ghj&lt;/td&gt;
+		                                    &lt;td class="center"&gt;哆啦A梦&lt;/td&gt;
+		                                    &lt;td class="center"&gt;2017-10-01&lt;/td&gt;
+		                                    &lt;td class="center"&gt;郭宏杰&lt;/td&gt;
+		                                    &lt;td class="center"&gt;15615611111&lt;/td&gt;
+		                                    &lt;td class="center"&gt;491861@qq.com&lt;/td&gt;
+		                                    &lt;td class="center"&gt;
+		                                    			                                    		使用中
+		                                    			                                    &lt;/td&gt;
+		                                    &lt;td class="center" style="text-align:center"&gt;
+		                                    	&lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="lock('SI_620','1');"&gt;
+		                                            &lt;i id="lock_SI_620" class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		冻结
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="showEditTempInfo('SI_620');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;编辑&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="editPassword('SI_620','ghj');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;修改密码&lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updatePcState('SI_620','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放PC入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                        &lt;button class="btn btn-xs btn-info" style="margin-right:20px;" onclick="updateMobileState('SI_620','0');"&gt;
+		                                            &lt;i class="ace-icon fa fa-pencil bigger-120"&gt;
+		                                            			                                            		开放M站入口
+		                                            			                                            &lt;/i&gt;
+		                                        &lt;/button&gt;
+		                                    &lt;/td&gt;
+										&lt;/tr&gt;
+																								&lt;/tbody&gt;
+						&lt;/table&gt;
+						
+    
+    
+    &lt;style type="text/css"&gt;
+        .pagination {margin:5px;padding:3px;float:right;font-size:12px;}
+        .pagination a, .pagination a:link, .pagination a:visited {padding:2px 5px;margin:2px;border:1px solid #aaaadd;text-decoration:none;color:#006699;}
+        .pagination a:hover, .pagination a:active {border: 1px solid #292f3b;color: #000;text-decoration: none;}
+        .pagination span.pageNo {padding: 2px 5px;margin: 2px;border: 1px solid #292f3b;font-weight: bold;background-color: #292f3b;color: #FFF;}
+        .pagination span.disabled {padding: 2px 5px;margin: 2px;border: 1px solid #eee; color: #ddd;}
+    &lt;/style&gt;
+        
+    
+    	    	        
+    
+    &lt;div class="pagination" style=""&gt;
+        &lt;form method="post" action="" name="qPagerForm" id="qPagerForm"&gt;
+        
+                                                                                                                                                                                                                                                                                                                &lt;input type="hidden" name="pageNo" value="1"/&gt;
+            &lt;input type="hidden" name="pageSize" value="10"/&gt;
+            
+                
+                            &lt;span class="disabled"&gt;&amp;laquo;&amp;nbsp;上一页&lt;/span&gt;
+                    
+                                
+                                                                        &lt;span class="pageNo"&gt;1&lt;/span&gt;
+                                                                &lt;a href="javascript:gotoPage(2)"&gt;2&lt;/a&gt;
+                                    
+                            &amp;hellip;
+                                        &lt;a href="javascript:gotoPage(37)"&gt;37&lt;/a&gt;
+                                        &lt;a href="javascript:gotoPage(38)"&gt;38&lt;/a&gt;
+                    
+                            &lt;a href="javascript:gotoPage(2)"&gt;下一页&amp;nbsp;&amp;raquo;&lt;/a&gt;
+                        &lt;span&gt;共376条记录&lt;/span&gt;
+                
+        &lt;/form&gt;
+        &lt;script language="javascript"&gt;
+            function gotoPage(no){
+                if (no != undefined){
+                    if(no&gt;38){no=38;}
+                    if(no&lt;1){no=1;}
+                    document.qPagerForm.pageNo.value=no;
+                }
+                //给qPagerForm追加随机数，避免浏览器缓存
+                var randomEle = document.createElement("input");
+                randomEle.type = "hidden";
+                randomEle.name = "r";
+        		randomEle.value = Math.random();
+        		qPagerForm.appendChild(randomEle);
+                document.qPagerForm.action = "/bfsShop/list.do";
+                                    document.qPagerForm.submit();
+                            }
+        &lt;/script&gt;
+    &lt;/div&gt;
+
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;!-- /.col --&gt;
+	&lt;/div&gt;
+	&lt;!-- /.row --&gt;
+
+&lt;!--基本信息--&gt;
+&lt;div class="modal fade" id="modal_template_info" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+	&lt;div class="modal-dialog" style="width:1400px;"&gt;
+		&lt;div class="modal-content"&gt;
+			&lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+				&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+				&lt;h4 class="modal-title"&gt;新增旗舰店&lt;/h4&gt;
+			&lt;/div&gt;
+			&lt;div id="add_body" class="modal-body" style="max-height:750px;overflow:auto;"&gt;
+                &lt;form class="form-horizontal" id="form_template"  action="#" method="post"&gt;
+					&lt;input type="hidden" name="id" id="id" value=""&gt;
+					&lt;div class="modal-footer" style="text-align:left;"&gt;
+						商家信息&lt;span style="margin-left:10px;color:red;"&gt;[必填]&lt;/span&gt;
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div class="row"&gt;
+						&lt;div class="col-xs-12 col-sm-12"&gt;
+							&lt;input type="hidden" name="flag" value=1 /&gt;
+							&lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店账号&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="addLoginName" name="loginName" class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div id="pwd"&gt;
+	                            &lt;div class="form-group col-lg-4"&gt;
+	                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;密码&lt;/label&gt;
+	                                &lt;div class="col-lg-8"&gt;
+	                                    &lt;input type="password" id="addLoginPwd" name="loginPwd" class="form-control"&gt;
+	                                &lt;/div&gt;
+	                            &lt;/div&gt;
+	                            &lt;div class="form-group col-lg-4"&gt;
+	                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;确认密码&lt;/label&gt;
+	                                &lt;div class="col-lg-8"&gt;
+	                                    &lt;input type="password" id="addLoginPwdCon" class="form-control"&gt;
+	                                &lt;/div&gt;
+	                            &lt;/div&gt;
+                            &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店名称&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="addStoreName" name="storeName" class="form-control"&gt;
+                                    &lt;input type="hidden" id="currentStoreName"/&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="form-group col-lg-4" style="width:900px;"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right" style="width:144px;"&gt;品牌logo&lt;/label&gt;
+                                &lt;div class="col-lg-8" style="width:700px;"&gt;
+                                    &lt;input type="text" id="brandLogo" class="form-control" style="width:364px;float:left;" disabled="disabled"/&gt;
+                                    &lt;input type="hidden" id="brandLogoBak" name="brandLogo"/&gt;
+                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input class="btn btn-default" type="button" value="添加品牌logo" id="addBrandLogo" onclick="addBrandLogoImg();"/&gt;
+                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;图片尺寸：180x60 px
+                                &lt;/div&gt;
+                            &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;联系人&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="addContacts" name="contacts" class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;联系电话&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="addTelephone" name="telephone" class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;邮箱&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input type="text" id="addMail" name="mail" class="form-control"&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;状态&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;select id="addState" name="state" class="form-control"&gt;
+                                    	&lt;option value="1"&gt;使用中&lt;/option&gt;
+                                    	&lt;option value="0"&gt;冻结&lt;/option&gt;
+                                        &lt;option value="2"&gt;过期&lt;/option&gt;
+                                    &lt;/select&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;开通时间&lt;/label&gt;
+                                &lt;div class="col-lg-8"&gt;
+                                    &lt;input id="addStartDate" name="startDate" class="form-control" style="width:260px;" type="text" onfocus="WdatePicker({onpicked:function(){addEndDate.focus();},dateFmt:'yyyy-MM-dd',skin:'twoer',isShowClear:false,maxDate:'#F{$dp.$D(\'addEndDate\')}'})"/&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="form-group col-lg-4"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;到期时间&lt;/label&gt;
+                                &lt;div id="end_date" class="col-lg-8"&gt;
+                                    &lt;input id="addEndDate" name="endDate" class="form-control" style="width:260px;" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'twoer',isShowClear:false,minDate:'#F{$dp.$D(\'addStartDate\')}'})"/&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                            &lt;div id="url" class="form-group col-lg-4" style="width:550px;"&gt;
+                                &lt;label for="inputEmail3" class="col-lg-4 control-label text-right" style="width:144px;"&gt;访问地址&lt;/label&gt;
+                                &lt;div class="col-lg-8" style="width:380px;"&gt;
+                                	&lt;div id="url_value" style="line-height:50px;"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class="modal-footer" style="text-align:left;"&gt;
+						授权品牌&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+						[&lt;a href="javascript:addBrand();"&gt;新增&lt;/a&gt;]&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+						&lt;span style="color:red;"&gt;当选多个品牌时，必须指定唯一一个主营品牌&lt;/span&gt;
+						&lt;span style="margin-left:10px;color:red;"&gt;[必填]&lt;/span&gt;
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div&gt;
+						&lt;table id="brandTable" class="table table-striped table-bordered table-hover"&gt;
+							&lt;thead&gt;
+	                            &lt;tr&gt;
+	                                &lt;th&gt;品牌编号&lt;/th&gt;
+	                                &lt;th&gt;品牌名称&lt;/th&gt;
+	                                &lt;th&gt;主营品牌&lt;/th&gt;
+	                                &lt;th&gt;操作&lt;/th&gt;
+	                            &lt;/tr&gt;
+							&lt;/thead&gt;
+							&lt;tbody&gt;
+								&lt;tr&gt;
+									&lt;td colspan="12" style="text-align: center;"&gt;
+										&lt;h5&gt;无数据&lt;/h5&gt;
+									&lt;/td&gt;
+								&lt;/tr&gt;
+							&lt;/tbody&gt;
+						&lt;/table&gt;
+						&lt;input type="hidden" id="brandName" name="brandName"/&gt;
+						&lt;input type="hidden" id="brandId" name="brandId"/&gt;
+						&lt;input type="hidden" id="viceBrand" name="viceBrand"/&gt;
+					&lt;/div&gt;
+					&lt;div class="modal-footer" style="text-align:left;"&gt;
+						经营分类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+						[&lt;a href="javascript:;" onclick="addClass();"&gt;新增&lt;/a&gt;]
+						&lt;span style="margin-left:10px;color:red;"&gt;[必填]&lt;/span&gt;
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div&gt;
+						&lt;table id="classTable" class="table table-striped table-bordered table-hover"&gt;
+							&lt;thead&gt;
+	                            &lt;tr&gt;
+	                                &lt;th&gt;编号&lt;/th&gt;
+	                                &lt;th&gt;一级分类&lt;/th&gt;
+	                                &lt;th&gt;二级分类&lt;/th&gt;
+	                                &lt;th&gt;三级分类&lt;/th&gt;
+	                                &lt;th&gt;操作&lt;/th&gt;
+	                                &lt;th&gt;备注&lt;/th&gt;
+	                            &lt;/tr&gt;
+							&lt;/thead&gt;
+							&lt;tbody&gt;
+								&lt;tr&gt;
+									&lt;td colspan="12" style="text-align: center;"&gt;
+										&lt;h5&gt;无数据&lt;/h5&gt;
+									&lt;/td&gt;
+								&lt;/tr&gt;
+							&lt;/tbody&gt;
+						&lt;/table&gt;
+						&lt;div id="class_submit" style="display:none;"&gt;&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class="modal-footer" style="text-align:left;"&gt;
+						店铺介绍&lt;span style="margin-left:10px;color:red;"&gt;[必填]&lt;/span&gt;
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div style="padding-left:50px;"&gt;
+						&lt;textarea id="introduce" name="introduce" rows="4" cols="150" placeholder="最多输入35个字"&gt;&lt;/textarea&gt;
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div class="modal-footer" style="text-align:left;"&gt;
+						备注
+					&lt;/div&gt;&lt;br/&gt;
+					&lt;div style="padding-left:50px;"&gt;
+						&lt;textarea id="remark" name="remark" rows="4" cols="150" placeholder="最多输入200个字"&gt;&lt;/textarea&gt;
+					&lt;/div&gt;
+				&lt;/form&gt;
+			&lt;/div&gt;
+			&lt;div class="modal-footer"&gt;
+                &lt;button class="btn btn-default"  onclick="subTemplate()" id="saveID"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                   		 保存
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    	取消
+                &lt;/button&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;!-- /.modal-content --&gt;
+	&lt;/div&gt;
+	&lt;!-- /.modal-dialog --&gt;
+&lt;/div&gt;
+&lt;!-- /.modal --&gt;
+
+&lt;!-- 上传图片  --&gt;
+&lt;form id="add_logo_form" name="add_logo_form" method="post" enctype="multipart/form-data"&gt;
+&lt;div class="modal fade" id="add_brand_logo" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+	&lt;div class="modal-dialog" style="width:400px;"&gt;
+		&lt;div class="modal-content"&gt;
+			&lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+				&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+				&lt;h4 class="modal-title"&gt;添加品牌logo&lt;/h4&gt;
+			&lt;/div&gt;
+			&lt;div class="modal-body"&gt;
+            	&lt;table style="width:100%" id="imgTable" class="gome_pop_table"&gt;
+					&lt;tr&gt;
+						&lt;td width="80" class="text-right"&gt;图片文件&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+						&lt;td class="text-left"&gt;
+							&lt;input id="file" name="uploadify" type="file"/&gt;
+						&lt;/td&gt;
+					&lt;/tr&gt;
+					&lt;tr&gt;
+						&lt;td colspan="2"&gt;
+							&amp;nbsp;
+						&lt;/td&gt;
+					&lt;/tr&gt;
+					&lt;tr&gt;
+						&lt;td colspan="2"&gt;&lt;span style="color:red;"&gt;注：图片尺寸：180x60 px，可用扩展名:jpg,jpeg,png&lt;/span&gt;&lt;/td&gt;
+					&lt;/tr&gt;
+				&lt;/table&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-default" onclick="uploadImageFile();"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                   		 上传
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    	关闭
+                &lt;/button&gt;
+			&lt;/div&gt;
+         &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/form&gt;
+	
+&lt;!-- 添加品牌  --&gt;
+&lt;div class="modal fade" id="add_brand" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+	&lt;div class="modal-dialog" style="width:600px;"&gt;
+		&lt;div class="modal-content"&gt;
+			&lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+				&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+				&lt;h4 class="modal-title"&gt;授权品牌&lt;/h4&gt;
+			&lt;/div&gt;
+			&lt;form id="add_brand_form" name="add_brand_form" method="post" onkeydown="if(event.keyCode==13){return false;}"&gt;
+			&lt;div class="modal-body"&gt;
+            	&lt;table style="width:100%" id="imgTable" class="gome_pop_table"&gt;
+					&lt;tr&gt;
+						&lt;td width="80" class="text-right"&gt;搜索品牌&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+						&lt;td style="width:120px;"&gt;
+							&lt;input id="queryBrand" name="queryBrand" type="text"/&gt;
+						&lt;/td&gt;
+						&lt;td&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+							&lt;button type="button" class="btn btn-default" onclick="loadAllBrandInfo();"&gt;
+			                   		 搜索
+			                &lt;/button&gt;
+						&lt;/td&gt;
+					&lt;/tr&gt;
+				&lt;/table&gt;
+				&lt;div id="searchedBrand" style="margin:20px;min-height:100px;"&gt;
+					请搜索您想查找的品牌
+				&lt;/div&gt;
+				&lt;hr/&gt;
+				&lt;div style="margin:20px;min-height:80px;"&gt;
+					&lt;div style="float:left;min-height:80px;"&gt;已选择品牌：&lt;/div&gt;
+					&lt;div id="selectedBrand"&gt;&lt;/div&gt;
+					&lt;div style="display:none;" id="brandCodes"&gt;&lt;/div&gt;
+					&lt;input type="hidden" id="brandInfos"/&gt;
+					&lt;input type="hidden" id="brandInfo"/&gt;
+				&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-default" onclick="addBrandTable();"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                   		 提交
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    	取消
+                &lt;/button&gt;
+			&lt;/div&gt;
+			&lt;/form&gt;
+         &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 添加经营分类  --&gt;
+&lt;div class="modal fade" id="add_class" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+	&lt;div class="modal-dialog" style="width:600px;"&gt;
+		&lt;div class="modal-content"&gt;
+			&lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+				&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+				&lt;h4 class="modal-title"&gt;经营分类&lt;/h4&gt;
+			&lt;/div&gt;
+			&lt;div class="modal-body"&gt;
+            	&lt;div style="width:500px;"&gt;
+            		&lt;form id="add_class_form" name="add_class_form" method="post"&gt;
+						&lt;select id="addFirstClass"&gt;
+		                	&lt;option value=""&gt;全部一级分类&lt;/option&gt;
+		                &lt;/select&gt;
+		                &lt;select id="addSecondClass"&gt;
+		                	&lt;option value=""&gt;全部二级分类&lt;/option&gt;
+		                &lt;/select&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+						&lt;button type="button" class="btn btn-default" onclick="loadAllThirdClass();"&gt;
+		                   	查询
+		                &lt;/button&gt;
+		                &lt;input type="hidden" id="selectedQueryClasses"/&gt;
+	                &lt;/form&gt;
+            	&lt;/div&gt;
+				&lt;div style="margin-top:10px;"&gt;
+					&lt;div style="float:left;"&gt;
+						&lt;select multiple="multiple" id="loadThirdClass" style="width:240px;height:220px;"&gt;
+						&lt;/select&gt;
+					&lt;/div&gt;
+					&lt;div style="float:left;margin:10px;margin-top:50px;"&gt;
+						&lt;div&gt;
+							&lt;button type="button" class="btn btn-default" onclick="addThirdClass();"&gt;
+			                   	添加&gt;
+			                &lt;/button&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+			                &lt;button type="button" class="btn btn-default" onclick="delThirdClass();"&gt;
+			                   	&lt;删除
+			                &lt;/button&gt;
+		                &lt;/div&gt;
+		            &lt;/div&gt;
+					&lt;div&gt;
+						&lt;select multiple="multiple" id="selectedThirdClass" style="width:240px;height:220px;"&gt;
+						&lt;/select&gt;
+					&lt;/div&gt;
+					&lt;input type="hidden" id="selectedClasses"/&gt;
+					&lt;input type="hidden" id="selectedClasse"/&gt;
+				&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-default" onclick="addClassTable();"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                   		 确定分类
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    	取消
+                &lt;/button&gt;
+			&lt;/div&gt;
+         &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+function initClass(){
+	//查询时记录选择的三级分类和旗舰店状态
+	if(null != "" &amp;&amp; '' != ""){
+		$("#firstClass").val("");
+		secondChange();
+	}
+	if(null != "" &amp;&amp; '' != ""){
+		$("#secondClass").val("");
+		thirdChange();
+	}
+	if(null != "" &amp;&amp; '' != ""){
+		$("#thirdClass").val("");
+	}
+	if(null != "" &amp;&amp; '' != ""){
+		$("#state").val("");
+	}
+}
+&lt;/script&gt;
+&lt;/div&gt;&lt;!-- main content end --&gt;
+&lt;!-- footer start --&gt;
+    &lt;div class="footer"&gt;
+    &lt;div class="footer-inner"&gt;
+        &lt;!-- #section:basics/footer --&gt;
+        &lt;div class="footer-content"&gt;
+						&lt;span class="bigger-120"&gt;
+							沪ICP备11009419号&amp;nbsp;|&amp;nbsp;Copyright&amp;nbsp;©&amp;nbsp;2000-2016 All Rights Reserved 国美电器有限公司版权所有
+						&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- /section:basics/footer --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- footer end --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglShopId: 接口- 店铺管理_店铺ID -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',1)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='pt2_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglShopId</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse in">
+    <pre>
+    
+pt2_1: {"remark":"获取数据成功","data":{"shop":{"brandId":"10000009","brandLogo":"//gfs11.atguat.net.cn/T1nFZTB_bv1RCvBVdK.jpg","brandName":"海尔（Haier）","contacts":"2","endDate":"2017-09-22 00:00:00.0","flag":0,"id":"SI_293","indexUrl":"//pinpai.uatplus.com/SI_293/index.html","introduce":"2","isHead":0,"loginName":"2","loginPwd":"a897a98f1c22993131035dc66a114c6d","mail":"1@1.cn","mobileState":0,"pcState":0,"remark":"","startDate":"2017-09-21 00:00:00.0","state":"1","storeName":"222222222222222222222222222222222222222222222222222222222222222222222","telephone":"13909876567","viceBrand":"1225352575.海尔文,10000084.华为（HUAWEI）,"},"category":[{"brandId":"10000009","createDate":1507807980000,"createUser":"","firstCategoryId":"cat10000000","firstCategoryName":"手机、摄影、数码","id":676,"secondCategoryId":"cat10000012","secondCategoryName":"手机","shopInfoId":"SI_293","thirdCategoryId":"cat10000073","thirdCategoryName":"联通3G手机"},{"brandId":"10000009","createDate":1507807980000,"createUser":"","firstCategoryId":"cat10000001","firstCategoryName":"电脑、办公打印、文仪ss、礼品卡","id":677,"secondCategoryId":"cat10000015","secondCategoryName":"笔记本","shopInfoId":"SI_293","thirdCategoryId":"cat10000093","thirdCategoryName":"上网本"}]},"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglgetFirstCategories: 接口- 店铺管理_获取一级分类 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c3',1)" class="detail" id='c3'>详细</a></td>
+</tr>
+
+<tr id='pt3_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglgetFirstCategories</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt3_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt3_1'>通过</button>
+    <div id='div_pt3_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt3_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt3_1'>通过</button>
+    <div id='div_pt3_1' class="collapse in">
+    <pre>
+    
+pt3_1: {"remark":"获取数据成功","data":[{"categoryId":"cat10000000","categoryName":"手机、摄影、数码","sequence":1},{"categoryId":"cat10000001","categoryName":"电脑、办公打印、文仪ss、礼品卡","sequence":2},{"categoryId":"cat10000002","categoryName":"钟表","sequence":3},{"categoryId":"cat10000003","categoryName":"户外、体育、医疗、成人","sequence":4},{"categoryId":"cat10000004","categoryName":"电视、冰箱、洗衣机、空调","sequence":5},{"categoryId":"cat10000005","categoryName":"烟灶、小家电、卫浴","sequence":6},{"categoryId":"cat10000006","categoryName":"家居、家纺、五金","sequence":7},{"categoryId":"cat10420005","categoryName":"母婴、玩具、乐器","sequence":8},{"categoryId":"cat11002721","categoryName":"ab一级分类","sequence":9},{"categoryId":"cat11002722","categoryName":"qq1","sequence":10},{"categoryId":"cat11002764","categoryName":"搜索一级分类","sequence":11},{"categoryId":"cat11003281","categoryName":"一级分类1717","sequence":12},{"categoryId":"cat11003303","categoryName":"胡八一一级分类","sequence":13},{"categoryId":"cat11003561","categoryName":"一级分类110","sequence":14},{"categoryId":"cat11003564","categoryName":"暖洋洋一级分类","sequence":15},{"categoryId":"cat11003581","categoryName":"一级分类111","sequence":16},{"categoryId":"cat11003602","categoryName":"wbt一级分类","sequence":17},{"categoryId":"cat11003621","categoryName":"沸洋洋","sequence":18},{"categoryId":"cat11003643","categoryName":"王斌韬一级分类","sequence":19},{"categoryId":"cat11003646","categoryName":"一级分类112","sequence":20},{"categoryId":"cat11003662","categoryName":"一级分类113","sequence":21},{"categoryId":"cat11003682","categoryName":"王斌韬搜索一级分类","sequence":22},{"categoryId":"cat11004024","categoryName":"新增国美分类一级","sequence":23},{"categoryId":"cat11004050","categoryName":"mA","sequence":24},{"categoryId":"cat11004085","categoryName":"111开始测试","sequence":25},{"categoryId":"cat11004101","categoryName":"2月9号测试","sequence":26},{"categoryId":"cat11004103","categoryName":"123445555","sequence":27},{"categoryId":"cat11004143","categoryName":"冒烟审核","sequence":28},{"categoryId":"cat11004261","categoryName":"O2M新建一级分类cc","sequence":29},{"categoryId":"cat11004308","categoryName":"2月25号测试传o2m","sequence":30},{"categoryId":"cat11004342","categoryName":"测试发布推送O2M重新修改","sequence":31},{"categoryId":"cat11004381","categoryName":"2月21号测试","sequence":32},{"categoryId":"cat11004401","categoryName":"aaaaaaaaa","sequence":33},{"categoryId":"cat11004402","categoryName":"bbbbbb","sequence":34},{"categoryId":"cat11004421","categoryName":"cccccc","sequence":35},{"categoryId":"cat11004521","categoryName":"测试O2M审核","sequence":36},{"categoryId":"cat11004524","categoryName":"zyl-我是一级分类","sequence":37},{"categoryId":"cat11004525","categoryName":"zyl-我是一级分类哈","sequence":38},{"categoryId":"cat11004541","categoryName":"zyl-我是一级分类啊","sequence":39},{"categoryId":"cat11004542","categoryName":"zyl-我是一级分类（2）","sequence":40},{"categoryId":"cat11004543","categoryName":"zyl-我是一级分类（3）","sequence":41},{"categoryId":"cat11004641","categoryName":"销售属性专用一级分类","sequence":42},{"categoryId":"cat11004775","categoryName":"测试监控","sequence":43},{"categoryId":"cat1560066","categoryName":"图书重新审核","sequence":44},{"categoryId":"cat18651456","categoryName":"测试部专用","sequence":45},{"categoryId":"cat22211452","categoryName":"一级分类1","sequence":46},{"categoryId":"cat26911572","categoryName":"TestLVL1","sequence":47},{"categoryId":"cat27221508","categoryName":"延保测试数据","sequence":48},{"categoryId":"cat27481452","categoryName":"极信通信","sequence":49},{"categoryId":"cat31171452","categoryName":"一级分类","sequence":50},{"categoryId":"cat31171461","categoryName":"一级分类","sequence":51},{"categoryId":"cat31231452","categoryName":"手机","sequence":52},{"categoryId":"cat32121454","categoryName":"搜索分类","sequence":53},{"categoryId":"cat32121457","categoryName":"ada测试一级分类","sequence":54},{"categoryId":"cat40000989","categoryName":"汽车用品","sequence":55},{"categoryId":"cat40001019","categoryName":"1","sequence":56},{"categoryId":"cat40001102","categoryName":"整车销售","sequence":57},{"categoryId":"cat40001131","categoryName":"1","sequence":58},{"categoryId":"cat8300021","categoryName":"酒水、食品","sequence":59},{"categoryId":"cat9180005","categoryName":"个护化妆、日化清洁","sequence":60},{"categoryId":"hytest001","categoryName":"hytest一级分类","sequence":61},{"categoryId":"hytestG01","categoryName":"懒洋洋一级分类","sequence":62},{"categoryId":"xyyID01","categoryName":"xyy一级分类010901f","sequence":63},{"categoryId":"分类id_tab201702","categoryName":"2017一级分类","sequence":64}],"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglSearch_sqpp: 接口- 店铺管理_授权品牌 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c4',1)" class="detail" id='c4'>详细</a></td>
+</tr>
+
+<tr id='pt4_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglSearch_sqpp</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_1'>通过</button>
+    <div id='div_pt4_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_1'>通过</button>
+    <div id='div_pt4_1' class="collapse in">
+    <pre>
+    
+pt4_1: {"remark":"获取数据成功","data":[],"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglgetShopByName_loginName: 接口- 店铺管理_登录名称 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c5',1)" class="detail" id='c5'>详细</a></td>
+</tr>
+
+<tr id='pt5_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglgetShopByName_loginName</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt5_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt5_1'>通过</button>
+    <div id='div_pt5_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt5_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt5_1'>通过</button>
+    <div id='div_pt5_1' class="collapse in">
+    <pre>
+    
+pt5_1: {"code":"failure","result":"操作失败!"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglgetShopByName_storeName: 接口- 店铺管理_商店名称 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c6',1)" class="detail" id='c6'>详细</a></td>
+</tr>
+
+<tr id='pt6_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglgetShopByName_storeName</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt6_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt6_1'>通过</button>
+    <div id='div_pt6_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt6_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt6_1'>通过</button>
+    <div id='div_pt6_1' class="collapse in">
+    <pre>
+    
+pt6_1: {"code":"failure","result":"操作失败!"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglUpload_img: 接口- 店铺管理_上传图片 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c7',1)" class="detail" id='c7'>详细</a></td>
+</tr>
+
+<tr id='pt7_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglUpload_img</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt7_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt7_1'>通过</button>
+    <div id='div_pt7_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt7_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt7_1'>通过</button>
+    <div id='div_pt7_1' class="collapse in">
+    <pre>
+    
+pt7_1: {"remark":"获取数据成功","data":{"result":"//gfs11.atguat.net.cn/T1s5ETBX_v1RCvBVdK.jpg","status":"success"},"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglsaveOrUpdate_save: 接口- 店铺管理_新增店铺 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c8',1)" class="detail" id='c8'>详细</a></td>
+</tr>
+
+<tr id='pt8_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglsaveOrUpdate_save</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt8_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt8_1'>通过</button>
+    <div id='div_pt8_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt8_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt8_1'>通过</button>
+    <div id='div_pt8_1' class="collapse in">
+    <pre>
+    
+pt8_1: {"remark":"success","success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglLoadAllBrandInfo: 接口- 店铺管理_加载品牌 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c9',1)" class="detail" id='c9'>详细</a></td>
+</tr>
+
+<tr id='pt9_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglLoadAllBrandInfo</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt9_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt9_1'>通过</button>
+    <div id='div_pt9_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt9_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt9_1'>通过</button>
+    <div id='div_pt9_1' class="collapse in">
+    <pre>
+    
+pt9_1: {"remark":"获取数据成功","data":[],"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglgetCategorys: 接口- 店铺管理_二级分类 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c10',1)" class="detail" id='c10'>详细</a></td>
+</tr>
+
+<tr id='pt10_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglgetCategorys</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt10_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt10_1'>通过</button>
+    <div id='div_pt10_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt10_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt10_1'>通过</button>
+    <div id='div_pt10_1' class="collapse in">
+    <pre>
+    
+pt10_1: {"remark":"获取数据成功","data":[{"categoryId":"cat10000012","categoryName":"手机","sequence":1},{"categoryId":"cat9550017","categoryName":"运营商","sequence":2}],"success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglDjUpdate: 接口- 店铺管理_冻结 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c11',1)" class="detail" id='c11'>详细</a></td>
+</tr>
+
+<tr id='pt11_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglDjUpdate</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt11_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt11_1'>通过</button>
+    <div id='div_pt11_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt11_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt11_1'>通过</button>
+    <div id='div_pt11_1' class="collapse in">
+    <pre>
+    
+pt11_1: {"code":"success","result":"操作成功!"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglsaveOrUpdate_fix: 接口- 店铺管理_修改店铺 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c12',1)" class="detail" id='c12'>详细</a></td>
+</tr>
+
+<tr id='pt12_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglsaveOrUpdate_fix</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt12_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt12_1'>通过</button>
+    <div id='div_pt12_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt12_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt12_1'>通过</button>
+    <div id='div_pt12_1' class="collapse in">
+    <pre>
+    
+pt12_1: {"remark":"success","success":true}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpglJhUpdate: 接口- 店铺管理_激活 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c13',1)" class="detail" id='c13'>详细</a></td>
+</tr>
+
+<tr id='pt13_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpglJhUpdate</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt13_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt13_1'>通过</button>
+    <div id='div_pt13_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt13_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt13_1'>通过</button>
+    <div id='div_pt13_1' class="collapse in">
+    <pre>
+    
+pt13_1: {"code":"success","result":"操作成功!"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpshLogin: 接口- 店铺审核_登录 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c14',1)" class="detail" id='c14'>详细</a></td>
+</tr>
+
+<tr id='pt14_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpshLogin</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt14_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt14_1'>通过</button>
+    <div id='div_pt14_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt14_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt14_1'>通过</button>
+    <div id='div_pt14_1' class="collapse in">
+    <pre>
+    
+pt14_1: &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+    &lt;meta http-equiv="pragma" content="no-cache"&gt;
+    &lt;meta http-equiv="cache-con trol" content="no-cache"&gt;
+    &lt;meta http-equiv="expires" content="0"&gt;
+    &lt;meta http-equiv="x-ua-compatible" content="IE=edge" &gt;
+    &lt;base href=""&gt;
+    &lt;link rel="shortcut icon" href="//app.gomein.net.cn/favicon.ico" type="image/x-icon"&gt;
+    &lt;title&gt;旗舰店后台管理系统&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;!--  Bootstrap framework start --&gt;
+&lt;link rel="stylesheet" href="/assets/css/bootstrap.css" /&gt;
+&lt;link rel="stylesheet" href="/assets/css/font-awesome.css" /&gt;
+&lt;!-- ace styles --&gt;
+&lt;link rel="stylesheet" href="/assets/css/ace.css"/&gt;
+&lt;link rel="stylesheet" href="/assets/css/chosen.css"/&gt;
+&lt;link rel="stylesheet" href="/css/artDialog.css"/&gt;
+&lt;!-- Bootstrap framework end --&gt;
+&lt;!--assets ui--&gt;
+&lt;link rel="stylesheet" href="/assets/css/jquery-ui.css" /&gt;
+&lt;!-- text fonts --&gt;
+&lt;link rel="stylesheet" href="/assets/css/ace-fonts.css" /&gt;
+&lt;!--js--&gt;
+&lt;script src="/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/bootstrap-table/bootstrap-table.js"&gt;&lt;/script&gt;
+&lt;script src="/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/chosen.jquery.js"&gt;&lt;/script&gt;
+&lt;script src="/js/jquery.form.min.js"&gt;&lt;/script&gt;
+&lt;!--bookjs--&gt;
+&lt;script src="/assets/js/bootbox.js"&gt;&lt;/script&gt;
+&lt;!--alert--&gt;
+&lt;script src="/js/jquery.artDialog.js"&gt;&lt;/script&gt;
+&lt;script src="/js/artDialog-common.js"&gt;&lt;/script&gt;
+
+&lt;body&gt;
+
+&lt;!-- header end  --&gt;
+&lt;!-- main content start --&gt;
+    &lt;div class="bBox"&gt;
+    
+
+&lt;script type="text/javascript"&gt;
+	var ctx = '';
+&lt;/script&gt;
+&lt;script src="/assets/js/ace.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/ace-elements.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/bootstrap-tag.js"&gt;&lt;/script&gt;
+&lt;script src="/js/WdatePicker/WdatePicker.js"&gt;&lt;/script&gt;
+&lt;style&gt;
+    th {
+    	text-align:center;
+    }
+	.col-sm-3 {
+	    width:8%;
+	}
+	textarea {
+    	resize:none;
+    }
+    td {
+    	overflow:hidden;  
+        text-overflow:ellipsis;  
+        white-space:nowrap;
+    }
+&lt;/style&gt;
+
+&lt;div class="page-content"&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-xs-12"&gt;
+			&lt;!-- PAGE CONTENT BEGINS --&gt;
+			&lt;div class="row"&gt;
+				&lt;div class="col-lg-12"&gt;
+					&lt;form id="search_form" name="search_form" method="post"
+						action="/bfsPage/list.do"
+						style="padding: 0px; margin: 0px;" class="form-inline"&gt;
+						&lt;div class="panel panel-default" style="margin-top: -px"&gt;
+							&lt;div id="panel-body-search" class="panel-body clearfix"&gt;
+								&lt;!-- 如果想只显示一行搜索条件请使用下面代码 --&gt;
+								&lt;!-- &lt;div id="panel-body-search" class="panel-body panel-body-search-close"&gt; --&gt;
+
+                                &lt;!--表单开始--&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店编号&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input type="text" value="" name="shopId" class="form-control" style="width:230px;"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;旗舰店名称&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input type="text" value="ghj" name="storeName" class="form-control" style="width:370px;"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;经营品牌&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input type="text" value="" name="brandName" class="form-control" style="width:370px;"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;申请时间&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;input id="startDate" name="startDate" value="" class="form-control" style="width:100px;" type="text" onfocus="WdatePicker({onpicked:function(){endDate.focus();},dateFmt:'yyyy-MM-dd',skin:'twoer',readOnly:true,isShowClear:false,maxDate:'#F{$dp.$D(\'endDate\')}'})"/&gt;
+                                        &amp;nbsp;—&amp;nbsp;
+										&lt;input id="endDate" name="endDate" value="" class="form-control" style="width:100px;" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'twoer',readOnly:true,isShowClear:false,minDate:'#F{$dp.$D(\'startDate\')}'})"/&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-group col-lg-4"&gt;
+                                    &lt;label for="inputEmail3" class="col-lg-4 control-label text-right"&gt;所属平台&lt;/label&gt;
+                                    &lt;div class="col-lg-8"&gt;
+                                        &lt;select id="relateMobile" name="relateMobile" class="form-control" style="width:230px;"&gt;
+                                        	&lt;option value=""&gt;全部平台&lt;/option&gt;
+                                        	&lt;option value="0"&gt;PC端&lt;/option&gt;
+                                        	&lt;option value="1"&gt;手机端&lt;/option&gt;
+                                        &lt;/select&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+								&lt;!--表单结束--&gt;
+							&lt;/div&gt;
+							&lt;div class="panel-footer text-right clearfix"&gt;
+								&lt;input class="btn btn-default" id="clear_query_btn"
+									type="submit" style="margin-right: 30px" value="查 询"/&gt;
+								&lt;button class="btn btn-default"
+									type="button" onclick="clearForm();" style="margin-right: 50px"&gt;清 空&lt;/button&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/form&gt;
+				&lt;/div&gt;
+				&lt;!-- /.col-lg-12 --&gt;
+			&lt;/div&gt;
+
+			&lt;div class="row"&gt;
+				&lt;div class="col-xs-12"&gt;
+					&lt;div class="table-header"&gt;
+						审核页面列表
+					&lt;/div&gt;
+					&lt;div&gt;
+						&lt;table class="table table-striped table-bordered table-hover" style="table-layout:fixed;"&gt;
+							&lt;thead&gt;
+	                            &lt;tr&gt;
+	                                &lt;th width="7%"&gt;旗舰店编号&lt;/th&gt;
+	                                &lt;th width="15%"&gt;旗舰店名称&lt;/th&gt;
+	                                &lt;th width="5%"&gt;页面id&lt;/th&gt;
+	                                &lt;th width="15%"&gt;页面名称&lt;/th&gt;
+	                                &lt;th width="5%"&gt;页面类型&lt;/th&gt;
+	                                &lt;th width="5%"&gt;所属平台&lt;/th&gt;
+	                                &lt;th width="15%"&gt;品牌&lt;/th&gt;
+	                                &lt;th width="9%"&gt;申请时间&lt;/th&gt;
+	                                &lt;th width="8%"&gt;旗舰店账号&lt;/th&gt;
+	                                &lt;th width="5%"&gt;页面状态&lt;/th&gt;
+	                                &lt;th width="13%"&gt;操作&lt;/th&gt;
+	                            &lt;/tr&gt;
+							&lt;/thead&gt;
+
+							&lt;tbody&gt;
+																	&lt;tr&gt;
+										&lt;td colspan="12" style="text-align: center;"&gt;
+											&lt;h5&gt;无数据&lt;/h5&gt;
+										&lt;/td&gt;
+									&lt;/tr&gt;
+															&lt;/tbody&gt;
+						&lt;/table&gt;
+						
+    
+    
+    &lt;style type="text/css"&gt;
+        .pagination {margin:5px;padding:3px;float:right;font-size:12px;}
+        .pagination a, .pagination a:link, .pagination a:visited {padding:2px 5px;margin:2px;border:1px solid #aaaadd;text-decoration:none;color:#006699;}
+        .pagination a:hover, .pagination a:active {border: 1px solid #292f3b;color: #000;text-decoration: none;}
+        .pagination span.pageNo {padding: 2px 5px;margin: 2px;border: 1px solid #292f3b;font-weight: bold;background-color: #292f3b;color: #FFF;}
+        .pagination span.disabled {padding: 2px 5px;margin: 2px;border: 1px solid #eee; color: #ddd;}
+    &lt;/style&gt;
+        
+    
+    	    	    	        
+    
+    &lt;div class="pagination" style="height:0px;"&gt;
+        &lt;form method="post" action="" name="qPagerForm" id="qPagerForm"&gt;
+        
+                                                                                                        &lt;input type="hidden" name="storeName" value="ghj"/&gt;
+                                                                                                                            &lt;input type="hidden" name="pageNo" value="1"/&gt;
+            &lt;input type="hidden" name="pageSize" value="10"/&gt;
+            
+                
+        &lt;/form&gt;
+        &lt;script language="javascript"&gt;
+            function gotoPage(no){
+                if (no != undefined){
+                    if(no&gt;0){no=0;}
+                    if(no&lt;1){no=1;}
+                    document.qPagerForm.pageNo.value=no;
+                }
+                //给qPagerForm追加随机数，避免浏览器缓存
+                var randomEle = document.createElement("input");
+                randomEle.type = "hidden";
+                randomEle.name = "r";
+        		randomEle.value = Math.random();
+        		qPagerForm.appendChild(randomEle);
+                document.qPagerForm.action = "/bfsPage/list.do";
+                                    document.qPagerForm.submit();
+                            }
+        &lt;/script&gt;
+    &lt;/div&gt;
+
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;!-- /.col --&gt;
+	&lt;/div&gt;
+	&lt;!-- /.row --&gt;
+
+&lt;!-- 审核页面  --&gt;
+&lt;div class="modal fade" id="check_modal" tabindex="-1" role="dialog" aria-hidden="true"&gt;
+	&lt;div class="modal-dialog" style="width:600px;"&gt;
+		&lt;div class="modal-content"&gt;
+			&lt;div class="modal-header"style="background: #307ecc; border-color: #307ecc; color: #fff;"&gt;
+				&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+				&lt;h4 class="modal-title"&gt;审核页面&lt;/h4&gt;
+			&lt;/div&gt;
+			&lt;div class="modal-body"&gt;
+            	&lt;div style="width:500px;min-height:100px;"&gt;
+            		&lt;form id="check_form" name="check_form" method="post"&gt;
+            			&lt;input type="hidden" name="id" /&gt;
+            			&lt;div style="float:left;margin:20px 100px;"&gt;
+							&lt;input type="radio" value=2 name="state" checked/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;审核通过
+						&lt;/div&gt;
+						&lt;div style="float:left;margin:20px 80px"&gt;
+          					&lt;input type="radio" value=3 name="state"/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;不通过
+	                	&lt;/div&gt;
+	                	&lt;div id="opinion" style="margin-left:60px;display:none;"&gt;
+	                		&lt;span style="vertical-align:top;"&gt;原因说明&amp;nbsp;&amp;nbsp;&lt;/span&gt;
+	                		&lt;textarea id="auditOpinion" rows="3" cols="40"&gt;&lt;/textarea&gt;
+	                		&lt;span style="margin-left:60px;color:red;"&gt;最多输入150个字&lt;/span&gt;
+	                	&lt;/div&gt;
+	                &lt;/form&gt;
+            	&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-default" onclick="submitCheck();"&gt;
+                    &lt;i class="ace-icon fa fa-check" &gt;&lt;/i&gt;
+                   		 确定
+                &lt;/button&gt;
+                &lt;button class="btn btn-sm" data-dismiss="modal"&gt;
+                    &lt;i class="ace-icon fa fa-times"&gt;&lt;/i&gt;
+                    	取消
+                &lt;/button&gt;
+			&lt;/div&gt;
+         &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	//查询时记录选择的所属平台状态
+	if(null != "" &amp;&amp; '' != ""){
+		$("#relateMobile").val("");
+	}
+	$("input[name='state'][value=2]").click(function(){
+		$("#opinion").css('display','none');
+		$("textarea[name='auditOpinion']").val("");
+		$("#auditOpinion").removeAttr('name');
+	});
+	$("input[name='state'][value=3]").click(function(){
+		$("#opinion").css('display','block');
+		$("#auditOpinion").attr('name','auditOpinion');
+	});
+});
+function clearForm(){
+	document.getElementById("search_form").reset();
+	$("#search_form input[type='text']").val("");
+}
+function check(pageId){
+	$("input[name='state'][value=2]").click();
+	$("input[name='id']").val(pageId);
+	$("#check_modal").modal({backdrop:"static", keyboard:false});
+    $("#check_modal").modal("show");
+}
+function browse(pageUrl){
+	window.open(pageUrl);
+}
+function submitCheck(){
+	var state = $("input[name='state']:checked").val();
+	if(state == 3){
+		var auditOpinion = $.trim($("textarea[name='auditOpinion']").val());
+		if(auditOpinion == ''){
+			alert("请输入不通过原因！");
+			return false;
+		}else if(auditOpinion.length &gt; 150){
+			alert("不通过原因最多150个字！");
+			return false;
+		}
+	}
+	$.ajax({
+		url:ctx+"/bfsPage/check.do",
+		type:"POST",
+		data:$("#check_form").serialize(),
+		dataType:'json',
+		success:function(data){
+			if(data.code=="success"){
+				alert("审核成功！");
+				$("#check_modal").modal("hide");
+				$("#search_form").submit();
+			}else{
+				alert("审核失败！");
+			}
+		}
+	});
+}
+&lt;/script&gt;
+&lt;/div&gt;&lt;!-- main content end --&gt;
+&lt;!-- footer start --&gt;
+    &lt;div class="footer"&gt;
+    &lt;div class="footer-inner"&gt;
+        &lt;!-- #section:basics/footer --&gt;
+        &lt;div class="footer-content"&gt;
+						&lt;span class="bigger-120"&gt;
+							沪ICP备11009419号&amp;nbsp;|&amp;nbsp;Copyright&amp;nbsp;©&amp;nbsp;2000-2016 All Rights Reserved 国美电器有限公司版权所有
+						&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- /section:basics/footer --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- footer end --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>DpshCheck: 接口- 店铺审核_审核 -测试</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c15',1)" class="detail" id='c15'>详细</a></td>
+</tr>
+
+<tr id='pt15_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_simple_DpshCheck</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt15_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt15_1'>通过</button>
+    <div id='div_pt15_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt15_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt15_1'>通过</button>
+    <div id='div_pt15_1' class="collapse in">
+    <pre>
+    
+pt15_1: {"code":"success","result":"操作成功!"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>15</td>
+    <td>15</td>
+    <td>0</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>
